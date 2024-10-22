@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .models import Product
 from .forms import ProductForm
 
-# Create your views here.
 
 #Home View
 def home_view(request):
@@ -33,3 +32,11 @@ def product_update_view(request, product_id):
             form.save()
             return redirect('product_list')
     return redirect(request, 'invApp/product_form.html', {'form': form})        
+
+#Delete View
+def product_delete_view(request, product_id):
+    product = Product.objects.get(product_id=product_id)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('product_list')
+    return render(request, 'invApp/product_confirm_delete.html', {'product': product})
