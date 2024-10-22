@@ -18,3 +18,9 @@ def product_create_view(request):
             return redirect('product_list')
     return redirect(request, 'invApp/product_form.html', {'form': form})
     
+#Read View
+def product_list_view(request):
+    products = Product.objects.all()
+    return render(request, 'invApp/product_list.html', {'products': products}) 
+
+#Update View   
