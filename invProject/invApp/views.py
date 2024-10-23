@@ -31,7 +31,7 @@ def product_update_view(request, product_id):
         if form.is_valid():
             form.save()
             return redirect('product_list')
-    return redirect(request, 'invApp/product_form.html', {'form': form})        
+    return render(request, 'invApp/product_form.html', {'form': form})        
 
 #Delete View
 def product_delete_view(request, product_id):
